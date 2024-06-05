@@ -25,7 +25,10 @@ class Command(BaseCommand):
         @dp.message_handler(commands=['start'])
         async def start(message: types.Message):
             mes_id = message['from']['id']
+            startattach = {'name': 'vasya'}
             url='https://lyhatik.github.io/_plan_fix/booking.html'
+            #url='@volley_phuket_bot:Https://t.me/volley_phuket_bot/planfix'
+            #url=f'https://t.me/volley_phuket_bot/planfix?startattach={startattach}'
             rbt_booking = types.KeyboardButton(
                 'Booking',
                 web_app=WebAppInfo(
@@ -51,6 +54,7 @@ class Command(BaseCommand):
             from_mes = message['from']
             user_id = from_mes['id']
             res['user_id'] = user_id
+            pprint.pprint(res)
             #await get_ts()
             await save_booking(res)
             

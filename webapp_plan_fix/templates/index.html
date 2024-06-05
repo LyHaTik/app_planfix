@@ -7,7 +7,83 @@
 	<title>Бронирование</title>
 	<link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
+<body>
+	<h3>Бронирование</h3>
+		<div class="popup">
+			<div id="map"></div>
+			<ul>
+				<input type="text" id="lat" class="cord_popup"></input>
+				<input type="text" id="lng" class="cord_popup"></input>
+			</ul>
+			<button id="id_bt_close">save</button>
+		</div>
+		<div class="inner">
+			<ul><label for="id_arendator">Арендатор:</label>
+				<select type="text" id="id_arendator" name="arendator">
+					{% for renter in renter_list %}
+						<option>{{ renter.name }}</option>
+					{% endfor %}
+				</select>
+			</ul>
 
+			<ul><label for="id_date_start">🗓 C:</label>
+				<input type="date" name="date_start" id="id_date_start" style="width: 100px;">
+				<label for="id_date_finish">до:</label>
+					<input type="date" name="date_finish" id="id_date_finish" style="width: 100px;"></ul>
+
+			<ul><label for="id_ts">ТС 🛵:</label>
+				<select type="text" id="id_ts" name="ts">
+					{% for ts in ts_list %}
+						<option>{{ ts.name }}</option>
+					{% endfor %}
+				</select>
+				<label for="id_period">Период:</label>
+				<input type="number" name="period" id="id_period" style="width: 20px;" readonly></ul>
+		</div>
+		<div class="inner">
+			<ul><label for="id_prepay">Предоплата 💵:</label>
+				<select type="text" id="id_prepay" name="prepay">
+					<option value="FULL">FULL</option>
+                    			<option value="deposite">deposite</option></select>
+				<label for="id_currency">Валюта:</label>	
+					<select type="text" id="id_currency" name="currency">
+						<option value="Ru">USD</option>
+						<option value="Ru">Ru</option>
+                    				<option value="Baht">Baht</option></select></ul>
+
+			<ul><label for="id_tarif">Ручной тариф:</label>
+				<input type="number" name="tarif" id="id_tarif" placeholder=".бат" style="width: 120px;"></ul>
+
+			<ul><label for="id_deposite">Сумма депозита:</label>
+				<input type="number" name="deposite" id="id_deposite" placeholder=".бат" style="width: 120px;"></ul>
+
+			<ul><label for="id_count" width="400px">Стоимость услуг:</label>
+				<input type="number" name="count" id="id_count" style="width: 120px;" placeholder=".бат"></ul>
+		</div>
+		<div class="inner">
+			<ul><label for="id_refer">Рефер.:</label>
+				<select type="text" id="id_refer" name="refer">
+					{% for refer in refer_list %}
+						<option>{{ refer.name }} {{ refer.lastname }}</option>
+					{% endfor %}
+				</select>
+				<label for="id_helmets">Helmets 🪖:</label>
+					<input type="number" name="helmets" id="id_helmets" style="width: 50px;"></ul>
+
+			<ul><label for="bt_location_start">Доставить:</label>
+					<button class="bt_location" name="bt_location_start" id="id_bt_location_start">📌</button>
+
+				<label for="bt_location_finish">Забарать:</label>
+					<button class="bt_location" name="bt_location_finish" id="id_bt_location_finish">📌</button></ul>
+
+			<ul><label for="id_comment">Комментрий 💬:</label>
+				<input type="text" name="comment" id="id_comment"></ul>
+		</div>
+	<ul><button id="booking" class="btn">planfix</button></ul>
+	<script src="https://telegram.org/js/telegram-web-app.js"></script>
+	<script href="{% static 'js/telegram-web-app.js' %}"></script>
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBbz9SsxmvvV-mXRkRGTH8F4cENndiecOk&libraries=places&callback=initMap"></script>
+</body>
 
 
 <body>
